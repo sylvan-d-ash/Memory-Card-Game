@@ -14,6 +14,10 @@
 		5E47D0E72448761F004DBD1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E47D0E62448761F004DBD1C /* Assets.xcassets */; };
 		5E47D0EA2448761F004DBD1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E47D0E82448761F004DBD1C /* LaunchScreen.storyboard */; };
 		5E47D0F52448761F004DBD1C /* Card_GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47D0F42448761F004DBD1C /* Card_GameTests.swift */; };
+		5E47D1002449AC8B004DBD1C /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47D0FF2449AC8B004DBD1C /* GameController.swift */; };
+		5E47D1022449ACB0004DBD1C /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47D1012449ACB0004DBD1C /* Card.swift */; };
+		5E47D1052449C0AD004DBD1C /* Array+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47D1042449C0AD004DBD1C /* Array+Ext.swift */; };
+		5E47D1072449C221004DBD1C /* MemoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47D1062449C221004DBD1C /* MemoryGame.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +42,10 @@
 		5E47D0F02448761F004DBD1C /* Card GameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Card GameTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E47D0F42448761F004DBD1C /* Card_GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card_GameTests.swift; sourceTree = "<group>"; };
 		5E47D0F62448761F004DBD1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5E47D0FF2449AC8B004DBD1C /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
+		5E47D1012449ACB0004DBD1C /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		5E47D1042449C0AD004DBD1C /* Array+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Ext.swift"; sourceTree = "<group>"; };
+		5E47D1062449C221004DBD1C /* MemoryGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGame.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +87,7 @@
 		5E47D0DC2448761D004DBD1C /* Card Game */ = {
 			isa = PBXGroup;
 			children = (
+				5E47D1032449C096004DBD1C /* Extensions */,
 				5E47D0DD2448761D004DBD1C /* AppDelegate.swift */,
 				5E47D0DF2448761D004DBD1C /* SceneDelegate.swift */,
 				5E47D0E12448761D004DBD1C /* ViewController.swift */,
@@ -86,6 +95,9 @@
 				5E47D0E62448761F004DBD1C /* Assets.xcassets */,
 				5E47D0E82448761F004DBD1C /* LaunchScreen.storyboard */,
 				5E47D0EB2448761F004DBD1C /* Info.plist */,
+				5E47D0FF2449AC8B004DBD1C /* GameController.swift */,
+				5E47D1012449ACB0004DBD1C /* Card.swift */,
+				5E47D1062449C221004DBD1C /* MemoryGame.swift */,
 			);
 			path = "Card Game";
 			sourceTree = "<group>";
@@ -97,6 +109,14 @@
 				5E47D0F62448761F004DBD1C /* Info.plist */,
 			);
 			path = "Card GameTests";
+			sourceTree = "<group>";
+		};
+		5E47D1032449C096004DBD1C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5E47D1042449C0AD004DBD1C /* Array+Ext.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,8 +221,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E47D0E22448761D004DBD1C /* ViewController.swift in Sources */,
+				5E47D1002449AC8B004DBD1C /* GameController.swift in Sources */,
+				5E47D1022449ACB0004DBD1C /* Card.swift in Sources */,
+				5E47D1052449C0AD004DBD1C /* Array+Ext.swift in Sources */,
 				5E47D0DE2448761D004DBD1C /* AppDelegate.swift in Sources */,
 				5E47D0E02448761D004DBD1C /* SceneDelegate.swift in Sources */,
+				5E47D1072449C221004DBD1C /* MemoryGame.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
