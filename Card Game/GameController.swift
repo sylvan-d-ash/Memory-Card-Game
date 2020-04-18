@@ -11,7 +11,7 @@ import UIKit
 class GameController: UIViewController {
     private enum Constants {
         static let offset: CGFloat = 15
-        static let sectionInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 20.0)
+        static let sectionInsets = UIEdgeInsets(top: 20.0, left: 0, bottom: 20.0, right: 0)
     }
 
     private var collectionView: UICollectionView!
@@ -52,6 +52,8 @@ private extension GameController {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .gameGrey
         collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(CardCell.self, forCellWithReuseIdentifier: "\(CardCell.self)")
         view.addSubview(collectionView)
 
         [playButton, timerLabel, collectionView].forEach { $0?.translatesAutoresizingMaskIntoConstraints = false }
@@ -82,23 +84,27 @@ extension GameController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(CardCell.self)", for: indexPath) as? CardCell else {
+            return UICollectionViewCell()
+        }
+        presenter.configure(cell, at: indexPath.row)
+        return cell
     }
 }
 
 extension GameController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let availableWidth = Int(view.frame.width - (Constants.offset * 2))
+        let availableWidth = Int(view.frame.width - (Constants.offset * 5))
         let widthPerItem = availableWidth / 4
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return Constants.sectionInsets
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return Constants.offset
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return Constants.sectionInsets.left
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return Constants.offset
     }
 }
 

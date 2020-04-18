@@ -35,4 +35,9 @@ class GamePresenter {
             self.view.reloadView()
         }
     }
+
+    func configure(_ cell: CardCell, at row: Int) {
+        guard let card = cards[safe: row] else { return }
+        cell.setup(with: card)
+    }
 }

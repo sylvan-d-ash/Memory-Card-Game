@@ -59,6 +59,7 @@ class CardCell: UICollectionViewCell {
 private extension CardCell {
     func setupSubviews() {
         backImageView.image = UIImage(named: "card")
+        frontImageView.isHidden = true
 
         [frontImageView, backImageView].forEach { imageView in
             contentView.addSubview(imageView)
