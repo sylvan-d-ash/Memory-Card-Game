@@ -16,7 +16,6 @@ protocol GameViewProtocol: class {
 class GamePresenter {
     weak var view: GameViewProtocol!
     private let apiClient: APIClient
-    private let game: MemoryGame
     private var cards: [Card] = []
     private var cardsShown: [Card] = []
     var numberOfItems: Int { return cards.count }
@@ -25,7 +24,6 @@ class GamePresenter {
     init(_ view: GameViewProtocol, apiClient: APIClient) {
         self.view = view
         self.apiClient = apiClient
-        self.game = MemoryGame()
     }
 
     func viewDidLoad() {
