@@ -33,9 +33,8 @@ class APIClient {
             var cards: [Card] = []
             for image in APIClient.defaultCardImages {
                 let card = Card(artwork: image)
-                let copy = card
                 cards.append(card)
-                cards.append(copy)
+                cards.append(card.copy())
             }
 
             completion(.success(cards))

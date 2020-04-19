@@ -108,9 +108,22 @@ extension GameController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+extension GameController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter.didSelect(rowAt: indexPath.row)
+    }
+}
+
 extension GameController: GameViewProtocol {
     func reloadView() {
         collectionView.reloadData()
+    }
+
+    func toggleVisibility(forRowsAt indeces: [Int], show: Bool, animated: Bool) {
+        for index in indeces {
+            guard let cell = collectionView.cellForItem(at: IndexPath(item: index, section:0)) as? CardCell else { continue }
+            cell.toggleCardVisibility(show: show, animated: animated)
+        }
     }
 }
 

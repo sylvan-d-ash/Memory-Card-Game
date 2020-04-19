@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct Card {
+class Card {
     let id: String
     var isShown: Bool
     var artwork: UIImage
@@ -18,10 +18,20 @@ struct Card {
         self.isShown = false
         self.artwork = artwork
     }
+
+    private init(id: String, isShown: Bool, artwork: UIImage) {
+        self.id = id
+        self.isShown = isShown
+        self.artwork = artwork
+    }
+
+    func copy() -> Card {
+        return Card(id: id, isShown: isShown, artwork: artwork)
+    }
 }
 
 extension Card: Equatable {
     static func ==(lhs: Card, rhs: Card) -> Bool {
-        return lhs.id == rhs.id
+        return lhs.id == rhs.id && lhs.isShown == rhs.isShown
     }
 }
