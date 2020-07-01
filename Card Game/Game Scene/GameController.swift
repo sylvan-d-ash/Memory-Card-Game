@@ -34,6 +34,31 @@ class GameController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .gameGrey
         presenter.viewDidLoad()
+
+        // on load
+        // - display play button
+        // on play
+        // - show loading indicator
+        // - load images from unsplash
+        // - hide loading indicator
+        // - display collection view
+        // on end
+        // - show alert
+        // - keep collection view visible
+        // on cancel
+        // - hide collection view
+        // on play again
+        // - hide collection view
+        // - show loading indicator
+        // - load images from unsplash
+        // - hide loading indicator
+        // - display collection view
+        //
+        // add ons
+        // - cache images
+        // - cache time taken to finish
+        // - game over screen
+        // -- display completion times on the screen
     }
 }
 
@@ -46,6 +71,7 @@ private extension GameController {
 
         view.addSubview(timerLabel)
         timerLabel.text = "0:00"
+        timerLabel.isHidden = true
         timerLabel.textAlignment = .right
 
         let layout = UICollectionViewFlowLayout()
@@ -74,7 +100,26 @@ private extension GameController {
 
     @objc
     func playButtonTapped(_ sender: Any) {
-        //
+        collectionView.isHidden = false
+        playButton.isHidden = true
+        timerLabel.isHidden = false
+
+        counter = 0
+        timer.invalidate()
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerUpdate), userInfo: nil, repeats: true)
+    }
+
+    @objc
+    func timerUpdate() {
+        counter += 1
+        timerLabel.text = getTimeDisplayText()
+    }
+
+    func getTimeDisplayText() -> String {
+        let minutes = counter / 60
+        let seconds = counter % 60
+        let leadingZero = seconds < 10 ? "0" : ""
+        return "\(minutes):\(leadingZero)\(seconds)"
     }
 }
 
@@ -124,6 +169,27 @@ extension GameController: GameViewProtocol {
             guard let cell = collectionView.cellForItem(at: IndexPath(item: index, section:0)) as? CardCell else { continue }
             cell.toggleCardVisibility(show: show, animated: animated)
         }
+    }
+
+    func displayGameOverAlert() {
+        timer.invalidate()
+
+        let controller = UIAlertController(title: "Game Over!", message: "Play again?", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "No", style: .cancel) { _ in
+            self.collectionView.isHidden = true
+            self.playButton.isHidden = false
+            self.timerLabel.isHidden = true
+        }
+        controller.addAction(cancelAction)
+
+        let playAgainAction = UIAlertAction(title: "Yes", style: .default) { _ in
+            self.collectionView.isHidden = true
+            self.playButton.isHidden = false
+            self.timerLabel.isHidden = true
+        }
+        controller.addAction(playAgainAction)
+
+        present(controller, animated: true, completion: nil)
     }
 }
 

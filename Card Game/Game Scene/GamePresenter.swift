@@ -11,6 +11,7 @@ import Foundation
 protocol GameViewProtocol: class {
     func reloadView()
     func toggleVisibility(forRowsAt indeces: [Int], show: Bool, animated: Bool)
+    func displayGameOverAlert()
 }
 
 class GamePresenter {
@@ -98,6 +99,6 @@ private extension GamePresenter {
     }
 
     func endGame() {
-        //
+        view.displayGameOverAlert()
     }
 }
